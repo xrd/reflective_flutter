@@ -13,6 +13,22 @@ goals:
 
 Problems so far:
 
+**error with reflectable not initialized**
+
+```
+05-09 20:46:47.875 10144-10165/com.yourcompany.simpleflutter I/flutter: ══╡ EXCEPTION CAUGHT BY WIDGETS LIBRARY ╞═══════════════════════════════════════════════════════════
+05-09 20:46:47.887 10144-10165/com.yourcompany.simpleflutter I/flutter: The following StateError was thrown building Builder:
+05-09 20:46:47.887 10144-10165/com.yourcompany.simpleflutter I/flutter: Bad state: Reflectable has not been initialized. Did you forget to add the main file to the
+05-09 20:46:47.887 10144-10165/com.yourcompany.simpleflutter I/flutter: reflectable transformer's entry_points in pubspec.yaml?
+05-09 20:46:47.894 10144-10165/com.yourcompany.simpleflutter I/flutter: When the exception was thrown, this was the stack:
+05-09 20:46:47.908 10144-10165/com.yourcompany.simpleflutter I/flutter: #0      data (package:reflectable/src/reflectable_transformer_based.dart:172:5)
+05-09 20:46:47.908 10144-10165/com.yourcompany.simpleflutter I/flutter: #1      data (package:reflectable/src/reflectable_transformer_based.dart:171:33)
+05-09 20:46:47.908 10144-10165/com.yourcompany.simpleflutter I/flutter: #2      _DataCaching._data (package:reflectable/src/reflectable_transformer_based.dart:193:20)
+```
+
+I have tried to add `initializeReflectable();` to both the `main()` function and inside the state_injector.dart file 
+but always get "The method initializeReflectable(); isn't defined for class StateInjector"
+
 **testing package is not compatible with reflectable?**
  
 I had to comment this out:

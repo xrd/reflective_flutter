@@ -17,8 +17,11 @@ class StateInjector extends reflectable.Reflectable {
 
   Object createState(String functionName, Function() fn) {
     bool runInjection = false;
+    bool somethingElse = true;
+    runInjection = runInjection || somethingElse || (Platform.environment["IS_TEST"] != null);
+
     if (runInjection) {
-      // initializeReflectable(); // Set up reflection support => THIS FAILS, WHY?
+//      initializeReflectable(); // Set up reflection support => THIS FAILS, WHY?
       reflectable.InstanceInvokeMetaCapability;
       Object obj = fn();
       reflectable.InstanceMirror instanceMirror = stateInjector.reflect(obj);

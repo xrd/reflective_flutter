@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import "state_injector.dart";
 import "package:reflectable/reflectable.dart";
+import 'main.reflectable.dart'; // Import generated code.
 
-void main() => runApp(new MyApp());
+void main() {
+//  initializeReflectable();
+  runApp(new MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
