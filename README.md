@@ -2,9 +2,9 @@
 
 ## Steps to run 
 
-Open in Intellij.
-Run the app.
-
+* Open in Intellij.
+* Run the app.
+* Right now the app is hard coded to go into the inspection if-branch. If you want to see how it would run without that, change [true to false](https://github.com/xrd/reflective_flutter/blob/master/lib/state_injector.dart#L21).
 
 ## Goals
 
