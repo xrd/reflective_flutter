@@ -9,7 +9,7 @@ const stateInjector = const StateInjector();
 
  // Annotation Class
 class StateInjector extends reflectable.Reflectable {
-  const StateInjector() : super(reflectable.invokingCapability);
+  const StateInjector() : super(reflectable.instanceInvokeCapability);
 
   void doSomething() {
     print("Hi");
@@ -22,15 +22,19 @@ class StateInjector extends reflectable.Reflectable {
 
     if (runInjection) {
 //      initializeReflectable(); // Set up reflection support => THIS FAILS, WHY?
-      reflectable.InstanceInvokeMetaCapability;
+//      reflectable.InstanceInvokeMetaCapability;
       Object obj = fn();
-      reflectable.InstanceMirror instanceMirror = stateInjector.reflect(obj);
-
-      print(instanceMirror.invoke(functionName, []));
 
       // Can we figure out the runtime type of the object?
       Type runtimeType = obj.runtimeType;
       print(runtimeType);
+
+      // Crash here.
+      reflectable.InstanceMirror instanceMirror = stateInjector.reflect(obj);
+
+      // Never gets here
+      print(instanceMirror.invoke(functionName, []));
+
       return obj;
     }
     else

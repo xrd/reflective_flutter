@@ -1,6 +1,12 @@
 # reflective flutter
 
-goals:
+## Steps to run 
+
+Open in Intellij.
+Run the app.
+
+
+## Goals
 
 * make an "annotation" that can be added to a widget that injects at runtime an alternative stateful component (called `@stateInjector` here).
   * I would love to have the annotation actually override the `createState()` method, maybe by passing in a type. So, the annotation could look like `@stateInjector(MyHomePageState)`. But, in the meanwhile...
