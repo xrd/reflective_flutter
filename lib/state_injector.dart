@@ -16,9 +16,9 @@ class StateInjector extends reflectable.Reflectable {
   }
 
   Object createState(String functionName, Function() fn) {
-    bool runInjection = false;
-    bool somethingElse = true;
-    runInjection = runInjection || somethingElse || (Platform.environment["IS_TEST"] != null);
+    // For some reason, breakpoints are never hit (tree shaking?) so you have to 
+    // just manually adjust this value and restart the app
+    bool runInjection = false; 
 
     if (runInjection) {
 //      initializeReflectable(); // Set up reflection support => THIS FAILS, WHY?

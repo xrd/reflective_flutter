@@ -8,10 +8,10 @@ Run the app.
 
 ## Goals
 
-* make an "annotation" that can be added to a widget that injects at runtime an alternative stateful component (called `@stateInjector` here).
+* make an "annotation" that can be added to a widget that injects at runtime an alternative stateful component (called [`@stateInjector`](https://github.com/xrd/reflective_flutter/blob/master/lib/main.dart#L33) here).
   * I would love to have the annotation actually override the `createState()` method, maybe by passing in a type. So, the annotation could look like `@stateInjector(MyHomePageState)`. But, in the meanwhile...
-  * the easy way was for the annotation to have a method like this `Object createState(String methodName, Function() fn)`. It takes a function, which returns an object (that happens to inherit from ` State<T>` but the annotation should not need to know that before hand.
-* the `createState` function from the stateInjector can either return the object created in the closure as-is, or under certain conditions, call methods defined in the signature of the call (right now the switch is just a boolean that I can change in the debugger).
+  * the easy way was for the annotation to have a [method](https://github.com/xrd/reflective_flutter/blob/master/lib/main.dart#L40) like this `Object createState(String methodName, Function() fn)`. It takes a function, which returns an object (that happens to inherit from ` State<T>` but the annotation should not need to know that before hand.
+* the `createState` function from the stateInjector can either return the object created in the closure as-is, [or under certain conditions](https://github.com/xrd/reflective_flutter/blob/master/lib/state_injector.dart#L21), call methods defined in the signature of the call (right now the switch is just a boolean that I can change in the debugger).
 * under normal conditions, the `createState` has exactly the same behavior as the default create state call you get when you create a new flutter project: `MyHomePageState createState() => new MyHomePageState();`
 * Obviously, reflection does not handle private methods, so `_incrementCounter` needs to be changed to `incrementCounter`. 
 * Does the private state object need to go from `_MyHomePageState` to `_MyHomePageState`? Since it is in a closure, can `reflectable` figure out the type, methods, etc at runtime?
