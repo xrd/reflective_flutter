@@ -1,4 +1,4 @@
- import 'package:reflectable/reflectable.dart' as reflectable;
+import 'package:reflectable/reflectable.dart' as reflectable;
 // import "./main.dart"
 import 'dart:io' show Platform;
 
@@ -7,18 +7,14 @@ import 'dart:io' show Platform;
 // Annotation instance
 const stateInjector = const StateInjector();
 
- // Annotation Class
+// Annotation Class
 class StateInjector extends reflectable.Reflectable {
   const StateInjector() : super(reflectable.instanceInvokeCapability);
 
-  void doSomething() {
-    print("Hi");
-  }
-
-  Object createState(String functionName, Function() fn) {
-    // For some reason, breakpoints are never hit (tree shaking?) so you have to 
+  Object createState(Function() fn, List<String> args) {
+    // For some reason, breakpoints are never hit (tree shaking?) so you have to
     // just manually adjust this value and restart the app
-    bool runInjection = false; 
+    bool runInjection = true;
 
     if (runInjection) {
 //      initializeReflectable(); // Set up reflection support => THIS FAILS, WHY?
@@ -33,7 +29,9 @@ class StateInjector extends reflectable.Reflectable {
       reflectable.InstanceMirror instanceMirror = stateInjector.reflect(obj);
 
       // Never gets here
-      print(instanceMirror.invoke(functionName, []));
+      String functionName = args.first;
+      args.removeAt(0);
+      print(instanceMirror.invoke(functionName, args));
 
       return obj;
     }
@@ -42,5 +40,4 @@ class StateInjector extends reflectable.Reflectable {
   }
 
 }
-
 
